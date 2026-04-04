@@ -1,0 +1,135 @@
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  category: string;
+  department: string;
+  discount: number;
+  isFlashDeal: boolean;
+}
+
+// Sample products data
+export const sampleProducts: Product[] = [
+  {
+    id: "1",
+    name: "Frango Inteiro Congelado",
+    price: 12.9,
+    originalPrice: 18.9,
+    image: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400",
+    category: "Carnes",
+    department: "açougue",
+    discount: 32,
+    isFlashDeal: true,
+  },
+  {
+    id: "2",
+    name: "Leite Integral 1L",
+    price: 3.49,
+    originalPrice: 4.99,
+    image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400",
+    category: "Laticínios",
+    department: "laticínios",
+    discount: 30,
+    isFlashDeal: false,
+  },
+  {
+    id: "3",
+    name: "Pão Francês",
+    price: 5.9,
+    originalPrice: 8.9,
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400",
+    category: "Padaria",
+    department: "padaria",
+    discount: 34,
+    isFlashDeal: false,
+  },
+  {
+    id: "4",
+    name: "Maçã Fuji 1kg",
+    price: 7.9,
+    originalPrice: 12.9,
+    image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400",
+    category: "Frutas",
+    department: "frutas",
+    discount: 39,
+    isFlashDeal: true,
+  },
+  {
+    id: "5",
+    name: "Arroz Integral 5kg",
+    price: 18.9,
+    originalPrice: 26.9,
+    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400",
+    category: "Grãos",
+    department: "acougue",
+    discount: 30,
+    isFlashDeal: false,
+  },
+  {
+    id: "6",
+    name: "Ovos Brancos 30un",
+    price: 12.9,
+    originalPrice: 18.9,
+    image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400",
+    category: "Ovos",
+    department: "laticínios",
+    discount: 32,
+    isFlashDeal: false,
+  },
+  {
+    id: "7",
+    name: "Banana Prata 1kg",
+    price: 4.9,
+    originalPrice: 7.9,
+    image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400",
+    category: "Frutas",
+    department: "frutas",
+    discount: 38,
+    isFlashDeal: true,
+  },
+  {
+    id: "8",
+    name: "Queijo Mussarela 500g",
+    price: 15.9,
+    originalPrice: 22.9,
+    image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400",
+    category: "Laticínios",
+    department: "laticínios",
+    discount: 31,
+    isFlashDeal: false,
+  },
+  {
+    id: "9",
+    name: "Suco de Laranja 1L",
+    price: 6.9,
+    originalPrice: 9.9,
+    image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400",
+    category: "Bebidas",
+    department: "bebidas",
+    discount: 30,
+    isFlashDeal: false,
+  },
+  {
+    id: "10",
+    name: "Carne Moída 1kg",
+    price: 24.9,
+    originalPrice: 34.9,
+    image: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=400",
+    category: "Carnes",
+    department: "açougue",
+    discount: 29,
+    isFlashDeal: true,
+  },
+];
+
+export const departments = [
+  { id: "todas", name: "Todas", icon: "Grid3X3" },
+  { id: "açougue", name: "Açougue", icon: "Beef" },
+  { id: "laticínios", name: "Laticínios", icon: "Milk" },
+  { id: "frutas", name: "Frutas", icon: "Apple" },
+  { id: "hortifruti", name: "Hortifruti", icon: "Carrot" },
+  { id: "padaria", name: "Padaria", icon: "Croissant" },
+  { id: "bebidas", name: "Bebidas", icon: "Wine" },
+];
