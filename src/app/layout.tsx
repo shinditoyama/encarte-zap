@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const montserrat = Montserrat({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  weight: "400",
-  subsets: ["latin"],
-});
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "antialiased", inter.className, "font-sans", montserrat.variable)}>
+    <html
+      lang="en"
+      className={cn("h-full", "antialiased", "font-sans", montserrat.variable)}
+    >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

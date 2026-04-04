@@ -1,17 +1,4 @@
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice: number;
-  image: string;
-  category: string;
-  department: string;
-  discount: number;
-  isFlashDeal: boolean;
-}
-
-// Sample products data
-export const sampleProducts: Product[] = [
+export const sampleProducts = [
   {
     id: "1",
     name: "Frango Inteiro Congelado",
@@ -125,7 +112,6 @@ export const sampleProducts: Product[] = [
 ];
 
 export const departments = [
-  { id: "todas", name: "Todas", icon: "Grid3X3" },
   { id: "açougue", name: "Açougue", icon: "Beef" },
   { id: "laticínios", name: "Laticínios", icon: "Milk" },
   { id: "frutas", name: "Frutas", icon: "Apple" },

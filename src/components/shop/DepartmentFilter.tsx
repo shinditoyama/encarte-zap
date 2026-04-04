@@ -1,43 +1,58 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { departments } from "@/lib/mock";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ZapIcon } from "@hugeicons/core-free-icons";
+import { useCart } from "@/store/use-cart";
 
 export function DepartmentFilter() {
-  // const { selectedDepartment, setSelectedDepartment } = useAppStore();
+  const { selectedDepartment, setSelectedDepartment } = useCart();
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4">
-      <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-        <span className="w-1 h-6 bg-green-600 rounded-full"></span>
-        Filtrar por Departamento
-      </h3>
+    <Card className="shadow">
+      <CardHeader>
+        <h3 className="font-semibold flex items-center gap-2">
+          <span className="w-1 h-6 bg-green-600 rounded-full" />
+          Filtrar por Departamento
+        </h3>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-wrap gap-2">
+          {departments.map((dept) => {
+            const isSelected = selectedDepartment === dept.id;
 
-      <div className="flex flex-wrap gap-2">
-        {departments.map((dept) => {
-          //const IconComponent = iconMap[dept.icon];
-          //const isSelected = selectedDepartment === dept.id;
-
-          return (
-            <button
-              key={dept.id}
-              // onClick={() => setSelectedDepartment(dept.id === selectedDepartment ? null : dept.id)}
-              className={`category-pill flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all `}
-            >
-              {/* <HugeiconsIcon icon={ZapIcon} strokeWidth={2} /> */}
-              <span className="text-sm">{dept.name}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/*selectedDepartment && (
-        <button
-          onClick={() => setSelectedDepartment(null)}
-          className="mt-3 text-sm text-red-500 hover:text-red-700 font-medium"
-        >
-          ✕ Limpar filtro
-        </button>
-      )*/}
-    </div>
+            return (
+              <Button
+                key={dept.id}
+                variant={isSelected ? "default" : "outline"}
+                onClick={() =>
+                  setSelectedDepartment(
+                    dept.id === selectedDepartment ? null : dept.id,
+                  )
+                }
+              >
+                <span>{dept.name}</span>
+              </Button>
+            );
+          })}
+        </div>
+      </CardContent>
+      {selectedDepartment && (
+        <CardFooter className="-my-4">
+          <Button
+            variant="link"
+            onClick={() => setSelectedDepartment(null)}
+            className="text-sm text-red-500 hover:text-red-700 font-medium"
+          >
+            ✕ Limpar filtro
+          </Button>
+        </CardFooter>
+      )}
+    </Card>
   );
 }
