@@ -111,6 +111,43 @@ export const sampleProducts = [
   },
 ];
 
+export const recipes = [
+  {
+    id: "1",
+    name: "Frango Assado com Legumes",
+    description: "Frangosuculentoassado com batatas e cenoura",
+    image: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400",
+    servings: 4,
+    prepTime: 60,
+    ingredients: [{ productId: "1", quantity: 1 }],
+  },
+  {
+    id: "2",
+    name: "Omelete de Queijo",
+    description: "Omeletefofa com mussarela",
+    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400",
+    servings: 1,
+    prepTime: 15,
+    ingredients: [
+      { productId: "6", quantity: 1 },
+      { productId: "8", quantity: 1 },
+    ],
+  },
+  {
+    id: "3",
+    name: "Almoço Fitness",
+    description: "Carne moída com alface e tomate",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    servings: 2,
+    prepTime: 30,
+    ingredients: [
+      { productId: "10", quantity: 1 },
+      { productId: "11", quantity: 1 },
+      { productId: "12", quantity: 1 },
+    ],
+  },
+];
+
 export const departments = [
   { id: "açougue", name: "Açougue", icon: "Beef" },
   { id: "laticínios", name: "Laticínios", icon: "Milk" },

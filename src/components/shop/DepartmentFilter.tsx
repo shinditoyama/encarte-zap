@@ -1,12 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { departments } from "@/lib/mock";
 import { useCart } from "@/store/use-cart";
 
@@ -24,6 +19,7 @@ export function DepartmentFilter() {
       <CardContent>
         <div className="flex flex-wrap gap-2">
           {departments.map((dept) => {
+            //const IconComponent = iconMap[dept.icon];
             const isSelected = selectedDepartment === dept.id;
 
             return (
@@ -36,6 +32,7 @@ export function DepartmentFilter() {
                   )
                 }
               >
+                {/* {IconComponent && <IconComponent className="w-4 h-4" />} */}
                 <span>{dept.name}</span>
               </Button>
             );

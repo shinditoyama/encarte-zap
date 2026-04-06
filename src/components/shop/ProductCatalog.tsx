@@ -1,7 +1,7 @@
 "use client";
 
-import { sampleProducts } from "@/lib/mock";
 import { ProductCard } from "./ProductCard";
+import { sampleProducts } from "@/lib/mock";
 import { useCart } from "@/store/use-cart";
 
 export function ProductCatalog() {

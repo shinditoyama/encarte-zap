@@ -1,17 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { formatCurrency } from "@/lib/utils";
-import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useCart } from "@/store/use-cart";
+import { IconMinus, IconPlus } from "@tabler/icons-react";
 
 interface ProductCardProps {
   product: IProduct;
@@ -33,21 +28,19 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Card className="overflow-hidden shadow hover:shadow-lg p-0 group">
+    <Card className="product-card overflow-hidden cursor-pointer shadow-md hover:shadow-lg p-0 group">
       <CardHeader className="p-0 relative">
-        <Badge
-          variant="default"
-          className="absolute top-2 left-2 z-10 bg-red-500 text-white border-red-600"
-        >
-          -{product.discount}%
-        </Badge>
         <div className="relative h-40 sm:h-48 overflow-hidden">
           <Image
             src={product.image}
             alt={product.name}
             fill
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
+          <Badge className="absolute top-2 left-2 z-10 bg-red-500 text-white font-bold">
+            <span>{product.discount}% OFF</span>
+          </Badge>
         </div>
       </CardHeader>
 

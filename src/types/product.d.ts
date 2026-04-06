@@ -9,3 +9,11 @@ interface IProduct {
   discount: number;
   isFlashDeal: boolean;
 }
+
+interface ICartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
