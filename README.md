@@ -13,9 +13,11 @@ Uma solução full-stack moderna para supermercados, transformando o encarte sem
 
 ## 🛠️ Stack Utilizada
 
-- **Framework**: [Next.js 16 (App Router)](https://nextjs.org)
-- **Estilização/UI**: [Tailwind CSS](https://tailwindcss.com) + [Shadcn/ui](https://ui.shadcn.com)
-- **State Management**: [Zustand](https://zustand-demo.pmnd.rs)
+- **Framework:** [Next.js 16 (App Router)](https://nextjs.org)
+- **Estilização/UI:** [Tailwind CSS](https://tailwindcss.com) + [Shadcn/ui](https://ui.shadcn.com)
+- **Banco de Dados:** [PostgreSQL (Neon.tech)](https://neon.com)
+- **ORM:** [Drizzle ORM](https://orm.drizzle.team)
+- **Gerenciamento de Estado:** [Zustand](https://zustand-demo.pmnd.rs)
 
 ## ⚙️ Configuração do Ambiente
 
@@ -39,4 +41,4 @@ npm run dev
 
 ## 📝 Licença
 
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
