@@ -1,19 +1,22 @@
 interface IProduct {
-  id: string;
+  id: number;
   name: string;
-  price: number;
-  originalPrice: number;
-  image: string;
-  category: string;
-  department: string;
-  discount: number;
-  isFlashDeal: boolean;
+  price: string;
+  salePrice: string | null;
+  imageUrl: string;
+  isPromo: boolean | null;
 }
 
 interface ICartItem {
-  id: string;
+  id: number;
   name: string;
   price: number;
   quantity: number;
-  image: string;
+  imageUrl: string;
+}
+
+interface ICategory {
+  id: number;
+  name: string;
+  slug: string;
 }

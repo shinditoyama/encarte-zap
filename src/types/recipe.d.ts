@@ -1,14 +1,22 @@
 interface IRecipe {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  servings: number;
-  prepTime: number;
+  id: number;
+  title: string;
+  description: string | null;
+  imageUrl: string;
+  prepTime: string | null;
   ingredients: IRecipeIngredient[];
 }
 
 interface IRecipeIngredient {
-  productId: string;
-  quantity: number;
+  id: number;
+  recipeId: number | null;
+  productId: number | null;
+  quantityText: string | null;
+  product: {
+    id: number;
+    name: string;
+    price: string;
+    salePrice: string | null;
+    imageUrl: string;
+  } | null;
 }

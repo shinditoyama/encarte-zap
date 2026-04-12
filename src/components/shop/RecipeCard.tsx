@@ -21,13 +21,13 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
       <CardHeader className="p-0 relative">
         <div className="relative h-40 sm:h-48 overflow-hidden">
           <Image
-            src={recipe.image}
-            alt={recipe.name}
+            src={recipe.imageUrl}
+            alt={recipe.title}
             fill
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          <Badge className="absolute top-2 left-2 bg-emerald-500 text-white font-bold">
+          <Badge className="absolute top-2 left-2 text-white font-bold">
             <IconChefHat />
             <span>Receita</span>
           </Badge>
@@ -35,8 +35,8 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
       </CardHeader>
 
       <CardContent className="px-4 -mt-2">
-        <h3 className="font-semibold text-gray-900 text-sm sm:text-base mb-1 line-clamp-1">
-          {recipe.name}
+        <h3 className="font-semibold text-sm sm:text-base mb-1 line-clamp-1">
+          {recipe.title}
         </h3>
 
         <p className="text-xs text-gray-500 mb-3 line-clamp-1">
@@ -50,7 +50,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
           </div>
           <div className="flex items-center gap-1">
             <IconUsers className="w-3 h-3" aria-hidden="true" />
-            <span>{recipe.servings} porções</span>
+            <span>{/*recipe.servings*/} porções</span>
           </div>
         </div>
       </CardContent>

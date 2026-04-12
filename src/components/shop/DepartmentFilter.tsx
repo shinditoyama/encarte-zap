@@ -1,50 +1,54 @@
 "use client";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { departments } from "@/lib/mock";
-import { useCart } from "@/store/use-cart";
 
-export function DepartmentFilter() {
-  const { selectedDepartment, setSelectedDepartment } = useCart();
+export function DepartmentFilter({ categories }: { categories: ICategory[] }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentCategory = searchParams.get("category");
+
+  const handleFilter = (term: string | null) => {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set("category", term);
+    } else {
+      params.delete("category");
+    }
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <Card className="shadow">
       <CardHeader>
         <h3 className="font-semibold flex items-center gap-2">
-          <span className="w-1 h-6 bg-green-600 rounded-full" />
+          <span className="w-1 h-6 bg-primary rounded-full" />
           Filtrar por Departamento
         </h3>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2">
-          {departments.map((dept) => {
-            //const IconComponent = iconMap[dept.icon];
-            const isSelected = selectedDepartment === dept.id;
-
+          {categories.map((dept) => {
             return (
               <Button
                 key={dept.id}
-                variant={isSelected ? "default" : "outline"}
-                onClick={() =>
-                  setSelectedDepartment(
-                    dept.id === selectedDepartment ? null : dept.id,
-                  )
-                }
+                variant={currentCategory === dept.slug ? "default" : "outline"}
+                onClick={() => handleFilter(dept.slug)}
               >
-                {/* {IconComponent && <IconComponent className="w-4 h-4" />} */}
                 <span>{dept.name}</span>
               </Button>
             );
           })}
         </div>
       </CardContent>
-      {selectedDepartment && (
+      {currentCategory && (
         <CardFooter className="-my-4">
           <Button
             variant="link"
-            onClick={() => setSelectedDepartment(null)}
-            className="text-sm text-red-500 hover:text-red-700 font-medium"
+            onClick={() => handleFilter(null)}
+            className="text-sm text-destructive font-medium"
           >
             ✕ Limpar filtro
           </Button>

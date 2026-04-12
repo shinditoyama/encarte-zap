@@ -1,52 +1,79 @@
+import { getCategories } from "@/actions/category";
+import { getProductsByCategory } from "@/actions/product";
+import { getRecipes } from "@/actions/recipe";
 import { DepartmentFilter } from "@/components/shop/DepartmentFilter";
-import { ProductCatalog } from "@/components/shop/ProductCatalog";
-import { RecipeCard } from "@/components/shop/RecipeCard";
+import { ProductCard } from "@/components/shop/ProductCard";
+import { RecipeCatalog } from "@/components/shop/RecipeCatalog";
 import { RecipeModal } from "@/components/shop/RecipeModal";
 import { ShoppingList } from "@/components/shop/ShoppingList";
-import { recipes } from "@/lib/mock";
 import { IconBasket, IconChefHat } from "@tabler/icons-react";
 
-export default function Home() {
+type SearchParams = Promise<{ category?: string }>;
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const allCategories = await getCategories();
+  const allRecipes = await getRecipes();
+
+  const { category } = await searchParams;
+  const filteredProducts = await getProductsByCategory(category);
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-        {/* Recipes Section - Cross-selling */}
-        <section id="recipes" className="space-y-6">
-          <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-3">
-              <IconChefHat className="w-8 h-8" />
-              Receitas do Chef
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      {/* Recipes Section - Cross-selling */}
+      <section id="recipes" className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-3">
+            <IconChefHat className="w-8 h-8" />
+            Receitas do Chef
+          </h2>
+          <p className="text-gray-500 text-lg">
+            Clique em uma receita para adicionar os ingredientes à lista
+          </p>
+        </div>
+
+        <RecipeCatalog recipes={allRecipes} />
+      </section>
+
+      {/* Digital Catalog */}
+      <section id="catalog" className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-3">
+            <IconBasket className="w-8 h-8" />
+            Encarte Digital
+          </h2>
+          <p className="text-gray-500 text-lg">
+            Clique nos produtos para adicionar à sua lista
+          </p>
+        </div>
+
+        <DepartmentFilter categories={allCategories} />
+
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold">
+              {!category
+                ? "Todos os produtos"
+                : `Produtos em ${category.charAt(0).toUpperCase() + category.slice(1)}`}
             </h2>
-            <p className="text-gray-500 text-lg">
-              Clique em uma receita para adicionar os ingredientes à lista
-            </p>
+            <span className="text-sm text-gray-500">
+              {filteredProducts.length} produtos encontrados
+            </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {recipes.map((recipe, index) => (
-              <RecipeCard key={recipe.id} recipe={recipe} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </section>
-
-        {/* Digital Catalog */}
-        <section id="catalog" className="space-y-6">
-          <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-3">
-              <IconBasket className="w-8 h-8" />
-              Encarte Digital
-            </h2>
-            <p className="text-gray-500 text-lg">
-              Clique nos produtos para adicionar à sua lista
-            </p>
-          </div>
-
-          <DepartmentFilter />
-
-          <ProductCatalog />
-        </section>
-      </main>
-
+          {filteredProducts?.length === 0 && (
+            <h2 className="text-2xl font-bold">Produto não encontrado.</h2>
+          )}
+        </div>
+      </section>
       <ShoppingList />
       <RecipeModal />
     </div>

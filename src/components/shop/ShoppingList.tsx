@@ -50,7 +50,7 @@ export function ShoppingList() {
             {items.length > 0 && (
               <Badge
                 variant="destructive"
-                className="absolute -top-3 -right-3 h-6 w-6 px-1.5 bg-red-500 text-white"
+                className="absolute -top-3 -right-3 h-6 w-6 px-1.5 text-white"
               >
                 {items.length}
               </Badge>
@@ -110,7 +110,7 @@ export function ShoppingList() {
               <Button
                 variant="link"
                 onClick={clearList}
-                className="text-red-500 hover:text-red-700"
+                className="text-destructive"
               >
                 Limpar lista
               </Button>

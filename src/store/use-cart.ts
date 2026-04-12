@@ -2,17 +2,12 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface CartStore {
-  // Shopping list
   items: ICartItem[];
   addItem: (product: IProduct) => void;
-  removeFromList: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  removeFromList: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
   clearList: () => void;
   getTotal: () => number;
-
-  // Department filter
-  selectedDepartment: string | null;
-  setSelectedDepartment: (department: string | null) => void;
 }
 
 export const useCart = create<CartStore>()(
@@ -44,9 +39,9 @@ export const useCart = create<CartStore>()(
               {
                 id: product.id,
                 name: product.name,
-                price: product.price,
+                price: Number(product.salePrice ?? product.price),
                 quantity: 1,
-                image: product.image,
+                imageUrl: product.imageUrl,
               },
             ],
           });
@@ -79,11 +74,6 @@ export const useCart = create<CartStore>()(
           0,
         );
       },
-
-      selectedDepartment: null,
-
-      setSelectedDepartment: (department) =>
-        set({ selectedDepartment: department }),
     }),
     { name: "shopping-cart-storage" }, // Isso salva a lista no LocalStorage automaticamente!
   ),

@@ -32,37 +32,42 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardHeader className="p-0 relative">
         <div className="relative h-40 sm:h-48 overflow-hidden">
           <Image
-            src={product.image}
+            src={product.imageUrl}
             alt={product.name}
             fill
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          <Badge className="absolute top-2 left-2 z-10 bg-red-500 text-white font-bold">
-            <span>{product.discount}% OFF</span>
-          </Badge>
+          {product.isPromo && (
+            <Badge
+              variant="destructive"
+              className="absolute top-2 left-2 text-white font-bold"
+            >
+              <span className="uppercase">Sale</span>
+            </Badge>
+          )}
         </div>
       </CardHeader>
 
       <CardContent className="px-4">
-        <p className="text-xs text-gray-500 mb-1">{product.category}</p>
+        <p className="text-xs text-gray-500 mb-1">{/*product.category*/}</p>
         <h3 className="font-bold text-lg leading-tight min-h-14 line-clamp-2">
           {product.name}
         </h3>
 
         <div className="flex items-baseline gap-2 mt-3">
           <span className="text-2xl font-black text-primary">
-            {formatCurrency(product.price)}
+            {formatCurrency(Number(product.salePrice ?? product.price))}
           </span>
           <span className="text-sm line-through text-muted-foreground">
-            {formatCurrency(product.originalPrice)}
+            {product.salePrice && formatCurrency(Number(product.price))}
           </span>
         </div>
       </CardContent>
 
       <CardFooter className="p-4 pt-0 -mt-2">
         {quantity > 0 ? (
-          <div className="flex items-center bg-green-50 rounded-lg p-1 w-full">
+          <div className="flex items-center bg-green-50 rounded-md w-full">
             <Button onClick={handleRemoveClick} className="rounded-md">
               <IconMinus />
             </Button>
