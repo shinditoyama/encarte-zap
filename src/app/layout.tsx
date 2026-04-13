@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/shop/Footer";
 import { Header } from "@/components/shop/Header";
+import { ScrollToTop } from "@/components/shop/ScrollToTop";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <Header />
         <main className="grow bg-secondary">{children}</main>
+        <ScrollToTop />
         <Footer />
       </body>
     </html>

@@ -15,6 +15,7 @@ import {
   IconBrandWhatsapp,
   IconSend,
   IconShoppingBag,
+  IconShoppingCart,
 } from "@tabler/icons-react";
 import { formatCurrency } from "@/lib/utils";
 import { useCart } from "@/store/use-cart";
@@ -41,21 +42,17 @@ export function ShoppingList() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button
-          size="icon"
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full z-50 transition-transform hover:scale-110 active:scale-95"
-        >
-          <div className="relative">
-            <IconShoppingBag className="size-7" />
-            {items.length > 0 && (
-              <Badge
-                variant="destructive"
-                className="absolute -top-3 -right-3 h-6 w-6 px-1.5 text-white"
-              >
-                {items.length}
-              </Badge>
-            )}
-          </div>
+        <Button variant="default" size="lg" className="rounded-md">
+          <IconShoppingCart className="size-5" />
+          <span className="hidden sm:inline">Lista</span>
+          {items.length > 0 && (
+            <Badge
+              variant="destructive"
+              className="absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold"
+            >
+              {items.length}
+            </Badge>
+          )}
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col w-[90%] sm:w-[450px]">

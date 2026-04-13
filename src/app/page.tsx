@@ -74,7 +74,7 @@ export default async function Home({
           )}
         </div>
       </section>
-      <ShoppingList />
+      {/* <ShoppingList /> */}
       <RecipeModal />
     </div>
   );

@@ -15,8 +15,8 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Card
-      className="product-card overflow-hidden cursor-pointer shadow-md hover:shadow-lg p-0 group"
       onClick={() => openModal(recipe)}
+      className="product-card overflow-hidden cursor-pointer shadow-md hover:shadow-lg p-0 group"
     >
       <CardHeader className="p-0 relative">
         <div className="relative h-40 sm:h-48 overflow-hidden">
