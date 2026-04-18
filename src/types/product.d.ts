@@ -14,9 +14,3 @@ interface ICartItem {
   quantity: number;
   imageUrl: string;
 }
-
-interface ICategory {
-  id: number;
-  name: string;
-  slug: string;
-}

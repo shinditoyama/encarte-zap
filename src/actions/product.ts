@@ -2,15 +2,13 @@
 
 import { db } from "@/db";
 import { categories, products } from "@/db/schema";
+import { ProductFormValues, productSchema } from "@/lib/validators";
 import { and, eq } from "drizzle-orm";
 
-/*export const getProducts = async () => {
-  const data = await db
-    .select()
-    .from(productsTable)
-    .where(eq(productsTable.isPromo, true));
+export const getAllProducts = async () => {
+  const data = await db.select().from(products);
   return data;
-};*/
+};
 
 export async function getProductsByCategory(slug: string | undefined) {
   try {
@@ -44,6 +42,37 @@ export async function getProductsByCategory(slug: string | undefined) {
   } catch (error) {
     console.error("Erro no Select Action:", error);
     return [];
+  }
+}
+
+// CREATE
+export async function createProduct(data: ProductFormValues) {
+  const result = productSchema.safeParse(data);
+  if (!result.success) return { error: "Dados inválidos" };
+
+  try {
+    await db.insert(products).values(data);
+    // revalidatePath("/admin/products") // Atualiza a lista automaticamente
+    return { success: true };
+  } catch (error) {
+    return { error: "Erro ao salvar no banco de dados" };
+  }
+}
+
+// UPDATE
+export async function updateProduct(id: number, data: ProductFormValues) {
+  await db.update(products).set(data).where(eq(products.id, id));
+  // revalidatePath("/admin/products")
+}
+
+// DELETE
+export async function deleteProduct(id: number) {
+  try {
+    await db.delete(products).where(eq(products.id, id));
+    // revalidatePath("/dashboard/product", "page");
+    return { success: true };
+  } catch (error) {
+    return { error: "Erro ao deletar" };
   }
 }
 

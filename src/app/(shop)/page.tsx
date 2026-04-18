@@ -1,11 +1,10 @@
-import { getCategories } from "@/actions/category";
+import { getAllCategories } from "@/actions/category";
 import { getProductsByCategory } from "@/actions/product";
-import { getRecipes } from "@/actions/recipe";
+import { getAllRecipes } from "@/actions/recipe";
 import { DepartmentFilter } from "@/components/shop/DepartmentFilter";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { RecipeCatalog } from "@/components/shop/RecipeCatalog";
 import { RecipeModal } from "@/components/shop/RecipeModal";
-import { ShoppingList } from "@/components/shop/ShoppingList";
 import { IconBasket, IconChefHat } from "@tabler/icons-react";
 
 type SearchParams = Promise<{ category?: string }>;
@@ -15,8 +14,8 @@ export default async function Home({
 }: {
   searchParams: SearchParams;
 }) {
-  const allCategories = await getCategories();
-  const allRecipes = await getRecipes();
+  const allCategories = await getAllCategories();
+  // const allRecipes = await getAllRecipes();
 
   const { category } = await searchParams;
   const filteredProducts = await getProductsByCategory(category);
@@ -24,7 +23,7 @@ export default async function Home({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       {/* Recipes Section - Cross-selling */}
-      <section id="recipes" className="space-y-6">
+      {/* <section id="recipes" className="space-y-6">
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-3">
             <IconChefHat className="w-8 h-8" />
@@ -36,7 +35,7 @@ export default async function Home({
         </div>
 
         <RecipeCatalog recipes={allRecipes} />
-      </section>
+      </section> */}
 
       {/* Digital Catalog */}
       <section id="catalog" className="space-y-6">
@@ -74,7 +73,6 @@ export default async function Home({
           )}
         </div>
       </section>
-      {/* <ShoppingList /> */}
       <RecipeModal />
     </div>
   );

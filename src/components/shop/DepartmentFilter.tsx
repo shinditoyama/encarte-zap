@@ -35,7 +35,7 @@ export function DepartmentFilter({ categories }: { categories: ICategory[] }) {
               <Button
                 key={dept.id}
                 variant={currentCategory === dept.slug ? "default" : "outline"}
-                onClick={() => handleFilter(dept.slug)}
+                onClick={() => handleFilter(dept.slug || null)}
               >
                 <span>{dept.name}</span>
               </Button>

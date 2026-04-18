@@ -2,7 +2,11 @@
 
 import { db } from "@/db";
 import { recipes, recipeIngredients, products } from "@/db/schema";
-import { eq } from "drizzle-orm";
+
+export const getAllRecipes = async () => {
+  const data = await db.select().from(recipes);
+  return data;
+};
 
 export async function getRecipes() {
   /*const data = await db
